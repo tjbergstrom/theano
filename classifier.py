@@ -57,7 +57,7 @@ class Classifier(object):
                 best_loss = avg_validation_loss
                 test_losses = [test_model(i) for i in range(n_test_batches)]
                 avg_test_loss = np.mean(test_losses)
-                f = open("best_model.pkl", "w")
+                f = open("model.pickle", "w")
                 pickle.dump(self, f)
                 f.close()
                 self.accuracy()
@@ -67,7 +67,7 @@ class Classifier(object):
 
     def accuracy(self):
         try:
-            f = open("best_model.pickle", "r")
+            f = open("model.pickle", "r")
             best_model = pickle.load(f)
             f.close()
             correct = 0
@@ -78,7 +78,7 @@ class Classifier(object):
                 if prediction == label:
                     correct += 1
             accuracy = correct / len(test_set[0])
-            print(f"Model accuracy: {accuracy*100}")
+            print(f"Accuracy: {accuracy*100}")
         except:
             print(f"Accuracy not available")
 
