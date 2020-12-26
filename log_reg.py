@@ -8,7 +8,7 @@ import numpy as np
 from classifier import Classifier
 
 
-class LogisticRegression(Classifier):
+class Logistic_Regression(Classifier):
     def __init__(self, n_in, n_out):
         self.W = theano.shared(
             value=np.zeros(
@@ -50,7 +50,7 @@ class LogisticRegression(Classifier):
             inputs=[],
             outputs=self.predict(x_),
             givens={
-                x_: x
+                x_ : x
             }
         )()[0]
         return label
@@ -61,7 +61,7 @@ class LogisticRegression(Classifier):
         if y.ndim != y_pred.ndim:
             raise TypeError(f"Expected {y_pred.ndim}, got {y.ndim}")
         if not y.dtype.startswith("int"):
-            raise NotImplementedError()
+            raise TypeError()
         equalities = T.neq(y, y_pred)
         return T.mean(equalities)
 

@@ -9,26 +9,22 @@ import pickle
 import random
 import argparse
 import numpy as np
-from mlp import MLP
 from cnn import Convolutional
-from processing import load_data
+from processing import Load_data
 
 
 def training(dataset, batch_size=64, epochs=128, alpha=0.01):
-    dataset = load_data(dataset)
+    dataset = Load_data.training(dataset)
+    num_classes = Load_data.classes(dataset)
     rng = np.random.RandomState(42)
-    classifier = Convolutional(rng=rng, batch_size=batch_size, nkerns=(20, 50))
+    model = Convolutional(rng=rng, batch_size=batch_size, num_classes)
 
-    classifier.train(
+    model.train(
         dataset,
         alpha=alpha,
-        l1_reg=0.00001,
-        l2_reg=0.001,
         batch_size=batch_size,
         n_epochs=epochs
     )
-
-    classifier.accuracy()
 
 
 
