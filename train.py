@@ -1,5 +1,5 @@
 # train.py
-# Use the convolutional neural network to train a model
+# Use the convolutional neural network to train an image classification model
 #
 # $ python3 train.py -d dataset/ -e 32
 
@@ -7,7 +7,6 @@
 import sys
 import pickle
 import random
-import timeit
 import argparse
 import numpy as np
 from mlp import MLP
